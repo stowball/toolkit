@@ -123,14 +123,3 @@ $roundel-ring-size: 3px;
     font-size: 14px;
   }
 }
-
-// @NOTE Do we need to bring in the fill property?
-.c-roundel__icon {
-  position: relative;
-  top: 2px;
-
-  path {
-    fill: #ebebeb;
-    transition: fill 0.25s linear;
-  }
-}
