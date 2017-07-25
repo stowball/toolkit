@@ -49,19 +49,23 @@ $roundel-ring-size: 3px;
  *
  * The component that the user interacts with
  *
- * 1. Overrides JS set background
- * 2. Override default styles for .c-roundel__label to indicate the selected state.
+ * 1. Responsible for the blue to white effect to indicate the selection of a roundel.
+ * 2. Defence code for issues with Firefox.
+ * 3. Overrides JS set background
+ * 4. Defence code for issues with Firefox.
+ * 5. Override default styles for .c-roundel__label to indicate the selected state.
  */
 
 .c-roundel__option {
+  /*! autoprefixer: off */
   border: 1px solid color(grey-20);
   border-radius: 50%;
   display: table;
   height: $roundel-size - 10px;
   width: $roundel-size - 10px;
   background-clip: padding-box;
-  background-image: linear-gradient(to bottom right, rgba(color(brand), $roundel-border-opacity) 0%, rgba(color(brand), $roundel-border-opacity) 50%, rgba(#fff, 0) 50%);
-  background-image: -moz-linear-gradient(bottom right, rgba(color(brand), 0) 0%, rgba(#fff, 0) 100%);
+  background-image: linear-gradient(to bottom right, rgba(color(brand), $roundel-border-opacity) 0%, rgba(color(brand), $roundel-border-opacity) 50%, rgba(#fff, 0) 50%); /* [1] */
+  background-image: -moz-linear-gradient(bottom right, rgba(color(brand), 0) 0%, rgba(#fff, 0) 100%); /* [2] */
   background-size: 200%;
   background-position: 100% 100%;
   transition: all 0.25s linear;
@@ -78,14 +82,15 @@ $roundel-ring-size: 3px;
   }
 
   .c-roundel__input:checked + & {
+    /*! autoprefixer: off */
     background-position: 0 0;
-    background-color: transparent !important; /* [1] */
+    background-color: transparent !important; /* [3] */
     border-color: color(white);
     transform: scale(1.2);
     padding: $roundel-ring-size;
-    background-image: -moz-linear-gradient(bottom right, rgba(color(brand), 1) 0%, rgba(color(brand), 1) 100%);
+    background-image: -moz-linear-gradient(bottom right, rgba(color(brand), 1) 0%, rgba(color(brand), 1) 100%); /* [4] */
 
-    /* [2] */
+    /* [5] */
     .c-roundel__label {
       border: 1px solid color(white);
       font-weight: bold;
